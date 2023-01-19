@@ -1,22 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import TodoTable from './TodoTable';
 import './TodoList.css';
+import Confirm from './Confirm';
 
 function TodoList() {
   const [todo, setTodo] = useState({ date: "", desc: "" });
   const [todos, setTodos] = useState([]);
+  const modal = useRef(null);
 
   const inputChanged = event => setTodo({ ...todo, [event.target.name]: event.target.value });
 
   const addTodo = event => {
+    console.log('addTodo')
     event.preventDefault();
-    if (
-      todos.find(item => item.desc === todo.desc && item.date === todo.date) &&
-      window.confirm("The entry is identical with an existing todo. Do you want to keep it?")
-    ) {
+    if (todos.find(item => item.desc === todo.desc && item.date === todo.date)) {
+      modal.current.showModal();
+    } else {
       setTodos([...todos, todo]);
     }
-  }
+  };
+
+  const confirmAdd = (response) => {
+    console.log(response)
+    if (response) {
+      setTodos([...todos, todo]);
+    }
+  };
 
   const removeTodo = (index) => setTodos(todos.filter((todo, i) => i !== index));
 
@@ -33,6 +42,7 @@ function TodoList() {
         </fieldset>
       </form>
       <TodoTable todos={todos} remove={removeTodo} />
+      <Confirm ref={modal} onConfirm={confirmAdd} />
     </div>
   );
 };

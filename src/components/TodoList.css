@@ -5,3 +5,13 @@ legend {
 input {
   margin: 0 0.5em
 }
+
+dialog {
+  border-radius: 0.5em;
+  border-width: 1px;
+  border-color: gray;
+}
+
+dialog button {
+  margin: 0 0.5em
+}
