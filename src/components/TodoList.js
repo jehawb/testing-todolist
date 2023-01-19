@@ -21,7 +21,6 @@ function TodoList() {
   };
 
   const confirmAdd = (response) => {
-    console.log(response)
     if (response) {
       setTodos([...todos, todo]);
     }
@@ -42,7 +41,11 @@ function TodoList() {
         </fieldset>
       </form>
       <TodoTable todos={todos} remove={removeTodo} />
-      <Confirm ref={modal} onConfirm={confirmAdd} />
+      <Confirm ref={modal}
+        onConfirm={confirmAdd}
+        text={'The entry is identical with an existing todo. Do you want to keep it?'}
+        okLabel={'Keep it'}
+        cancelLabel={'Cancel'} />
     </div>
   );
 };
