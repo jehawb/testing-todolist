@@ -10,7 +10,12 @@ function TodoList() {
 
   const addTodo = event => {
     event.preventDefault();
-    setTodos([...todos, todo]);
+    if (
+      todos.find(item => item.desc === todo.desc && item.date === todo.date) &&
+      window.confirm("The entry is identical with an existing todo. Do you want to keep it?")
+    ) {
+      setTodos([...todos, todo]);
+    }
   }
 
   const removeTodo = (index) => setTodos(todos.filter((todo, i) => i !== index));
@@ -21,9 +26,9 @@ function TodoList() {
         <fieldset>
           <legend>Add todo:</legend>
           <label>Description:</label>
-          <input type="text" name="desc" value={todo.desc} onChange={inputChanged} />
+          <input type="text" required name="desc" value={todo.desc} onChange={inputChanged} />
           <label>Date:</label>
-          <input type="text" name="date" value={todo.date} onChange={inputChanged} />
+          <input type="date" required name="date" value={todo.date} onChange={inputChanged} />
           <button type="submit">Add</button>
         </fieldset>
       </form>
