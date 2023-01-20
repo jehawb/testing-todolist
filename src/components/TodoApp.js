@@ -1,20 +1,19 @@
 import React, { useState, useRef } from 'react';
 import TodoTable from './TodoTable';
-import './TodoList.css';
+import TodoInput from './TodoInput';
+
 import Confirm from './Confirm';
 
 function TodoList() {
-  const [todo, setTodo] = useState({ date: "", desc: "" });
   const [todos, setTodos] = useState([]);
+  const [pending, setPending] = useState(null);
+
   const modal = useRef(null);
 
-  const inputChanged = event => setTodo({ ...todo, [event.target.name]: event.target.value });
-
-  const addTodo = event => {
-    console.log('addTodo')
-    event.preventDefault();
+  const addTodo = todo => {
     if (todos.find(item => item.desc === todo.desc && item.date === todo.date)) {
       modal.current.showModal();
+      setPending(todo);
     } else {
       setTodos([...todos, todo]);
     }
@@ -22,7 +21,8 @@ function TodoList() {
 
   const confirmAdd = (response) => {
     if (response) {
-      setTodos([...todos, todo]);
+      setTodos([...todos, pending]);
+      setPending(null);
     }
   };
 
@@ -30,16 +30,7 @@ function TodoList() {
 
   return (
     <div>
-      <form onSubmit={addTodo}>
-        <fieldset>
-          <legend>Add todo:</legend>
-          <label>Description:</label>
-          <input type="text" required name="desc" value={todo.desc} onChange={inputChanged} />
-          <label>Date:</label>
-          <input type="date" required name="date" value={todo.date} onChange={inputChanged} />
-          <button type="submit">Add</button>
-        </fieldset>
-      </form>
+      <TodoInput onValue={addTodo} />
       <TodoTable todos={todos} remove={removeTodo} />
       <Confirm ref={modal}
         onConfirm={confirmAdd}
