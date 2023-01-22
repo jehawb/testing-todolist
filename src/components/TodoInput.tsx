@@ -1,12 +1,17 @@
 import './TodoInput.css';
 import React, { useState } from 'react';
+import { ToDo } from './types';
 
-function TodoInput({ onValue }) {
+interface Props {
+  onValue: (todo: ToDo) => void;
+}
+
+function TodoInput({ onValue }: Props) {
   const [todo, setTodo] = useState({ date: "", desc: "" });
 
-  const inputChanged = event => setTodo({ ...todo, [event.target.name]: event.target.value });
+  const inputChanged = (event: React.ChangeEvent<HTMLInputElement>) => setTodo({ ...todo, [event.target.name]: event.target.value });
 
-  const add = event => {
+  const add = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onValue(todo);
   }

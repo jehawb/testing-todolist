@@ -1,32 +1,32 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import TodoTable from './TodoTable';
 import TodoInput from './TodoInput';
-
 import Confirm from './Confirm';
+import { ToDo } from './types';
 
 function TodoList() {
-  const [todos, setTodos] = useState([]);
-  const [pending, setPending] = useState(null);
+  const [todos, setTodos] = useState<ToDo[]>([]);
+  const [pending, setPending] = useState<ToDo|null>(null);
 
-  const modal = useRef(null);
+  const modal = useRef<HTMLDialogElement>(null);
 
-  const addTodo = todo => {
+  const addTodo = (todo: ToDo) => {
     if (todos.find(item => item.desc === todo.desc && item.date === todo.date)) {
-      modal.current.showModal();
+      modal.current!.showModal();
       setPending(todo);
     } else {
       setTodos([...todos, todo]);
     }
   };
 
-  const confirmAdd = (response) => {
-    if (response) {
+  const confirmAdd = (response: boolean) => {
+    if (response && pending) {
       setTodos([...todos, pending]);
       setPending(null);
     }
   };
 
-  const removeTodo = (index) => setTodos(todos.filter((todo, i) => i !== index));
+  const removeTodo = (index: number) => setTodos(todos.filter((_, i) => i !== index));
 
   return (
     <div>

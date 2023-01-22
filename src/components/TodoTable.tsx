@@ -1,7 +1,12 @@
-import React from 'react';
 import './TodoTable.css';
+import { ToDo } from './types';
 
-function TodoTable({ todos, remove }) {
+interface Props {
+  todos: readonly ToDo[];
+  remove: (i: number) => void;
+}
+
+function TodoTable({ todos, remove }: Props) {
 
   return (
     todos?.length ? (
