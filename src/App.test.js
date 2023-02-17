@@ -1,6 +1,10 @@
-import React from "react";
+import jsdom from '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event'
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import TodoInput from './components/TodoInput';
+
+// jest.mock('../SomeDirectory/SomeComponent', () => 'SomeComponent');
 
 /**
  * @jest-environment jsdom
@@ -8,5 +12,17 @@ import App from './App';
 test('renders without crashing', () => {
   const div = document.createElement('div');
   render(<App />, div);
-  expect(div).not.toBeNull();
+  //unmountComponentAtNode(div);
+});
+
+/**
+ * @jest-environment jsdom
+ */
+describe('show input fields', () => {
+  test('task input field', () => {
+    //const user = userEvent.setup();
+    render(<TodoInput onValue='' />);
+    //await user.click(screen.getByText('Check'));
+    expect(screen.getByLabelText('Description:')).toBeVisible();
+  });
 });

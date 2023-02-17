@@ -20,10 +20,10 @@ function TodoInput({ onValue }: Props) {
     <form onSubmit={add}>
       <fieldset>
         <legend>Add todo:</legend>
-        <label>Description:</label>
-        <input type="text" required name="desc" value={todo.desc} onChange={inputChanged} />
-        <label>Date:</label>
-        <input type="date" required name="date" value={todo.date} onChange={inputChanged} />
+        <label id="todo_description">Description:</label>
+        <input id="todo_description_input" type="text" required name="desc" value={todo.desc} aria-labelledby="todo_description" onChange={inputChanged} />
+        <label id="todo_date">Date:</label>
+        <input id="todo_date_input" type="date" required name="date" value={todo.date} aria-labelledby="todo_date" onChange={inputChanged} />
         <button type="submit">Add</button>
       </fieldset>
     </form>
