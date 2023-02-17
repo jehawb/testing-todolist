@@ -12,7 +12,6 @@ import TodoInput from './components/TodoInput';
 test('renders without crashing', () => {
   const div = document.createElement('div');
   render(<App />, div);
-  //unmountComponentAtNode(div);
 });
 
 /**
@@ -20,9 +19,14 @@ test('renders without crashing', () => {
  */
 describe('show input fields', () => {
   test('task input field', () => {
-    //const user = userEvent.setup();
     render(<TodoInput onValue='' />);
-    //await user.click(screen.getByText('Check'));
     expect(screen.getByLabelText('Description:')).toBeVisible();
+  });
+
+  test('task input field', async () => {
+    const user = userEvent.setup();
+    render(<TodoInput onValue='' />);
+    await user.click(screen.getByText('Add'));
+    //expect(screen.getByLabelText('Description:')).toBeVisible();
   });
 });
