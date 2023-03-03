@@ -18,12 +18,12 @@ test('renders without crashing', () => {
  * @jest-environment jsdom
  */
 describe('show input fields', () => {
-  test('task input field', () => {
+  test('task input descrption', () => {
     render(<TodoInput onValue='' />);
     expect(screen.getByLabelText('Description:')).toBeVisible();
   });
 
-  test('task input field', async () => {
+  test('task input sending', async () => {
     const user = userEvent.setup();
     render(<TodoInput onValue='' />);
     await user.click(screen.getByText('Add'));

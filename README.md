@@ -1,15 +1,20 @@
-# Getting Started with Create React App
+# Yksikkötestaus käyttäen Jest-työkalua
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Jest-yksikkötestaustyökalun käyttöönottoon voi tutustua osoitteessa: 
+[JestJS getting-started](https://jestjs.io/docs/getting-started).
 
-## Available Scripts
+## Oman sovelluksen luonti käyttäen 
 
-In the project directory, you can run:
+Tämän sovelluksen pohjana on käytetty [Create React App](https://github.com/facebook/create-react-app) projektirunkoa.
+
+## NPM:llä ajettavat komennot
+
+Tässä projektissa voit ajaa seuraavia komentoja:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Käynnistää sovelluksen development tilassa.\
+Sovellus aukeaa osoitteeseen [http://localhost:3000](http://localhost:3000) selaimessasi.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
