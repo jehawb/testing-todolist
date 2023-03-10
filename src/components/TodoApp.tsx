@@ -4,7 +4,7 @@ import TodoInput from './TodoInput';
 import Confirm from './Confirm';
 import { ToDo } from './types';
 
-function TodoList() {
+function TodoApp() {
   const [todos, setTodos] = useState<ToDo[]>([]);
   const [pending, setPending] = useState<ToDo|null>(null);
 
@@ -41,4 +41,4 @@ function TodoList() {
   );
 };
 
-export default TodoList;
+export default TodoApp;
