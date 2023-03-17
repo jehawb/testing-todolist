@@ -21,7 +21,7 @@ function TodoTable({ todos, remove }: Props) {
           {
             todos.map((todo, index) =>
               <tr key={index}>
-                <td>{todo.desc}</td>
+                <td id="todo_list">{todo.desc}</td>
                 <td>{new Date(todo.date).toLocaleDateString()}</td>
                 <td><button onClick={() => remove(index)} >Delete</button></td>
               </tr>)
