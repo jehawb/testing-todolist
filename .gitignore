@@ -7,6 +7,10 @@
 
 # testing
 /coverage
+log.html
+output.xml
+report.html
+selenium-screenshot*
 
 # production
 /build
